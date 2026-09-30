@@ -29,3 +29,4 @@ class Store(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=func.now())
 
     seller = db.relationship("User", back_populates="store")
+    products = db.relationship("Product", back_populates="store")
