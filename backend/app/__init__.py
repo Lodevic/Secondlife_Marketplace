@@ -26,13 +26,19 @@ def create_app():
     from app import models  # noqa: F401
     from app.routes.auth import auth_bp
     from app.routes.catalog import categories_bp, conditions_bp, products_bp
+    from app.routes.cart import cart_bp
+    from app.routes.checkout import checkout_bp
     from app.routes.stores import stores_bp
+    from app.routes.wishlist import wishlist_bp
 
     app.register_blueprint(auth_bp, url_prefix="/api/auth")
     app.register_blueprint(categories_bp, url_prefix="/api/categories")
     app.register_blueprint(conditions_bp, url_prefix="/api/conditions")
     app.register_blueprint(products_bp, url_prefix="/api/products")
+    app.register_blueprint(cart_bp, url_prefix="/api/cart")
+    app.register_blueprint(checkout_bp, url_prefix="/api/checkout")
     app.register_blueprint(stores_bp, url_prefix="/api/stores")
+    app.register_blueprint(wishlist_bp, url_prefix="/api/wishlist")
 
     @app.route("/api/health")
     def health():
