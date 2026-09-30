@@ -8,6 +8,7 @@ from app.models.catalog import (
 	ProductImageType,
 	ProductStatus,
 )
+from app.models.shopping import Cart, CartItem, CartStatus, Wishlist
 from app.models.store import Store, StoreStatus
 from app.models.user import User, UserRole, UserStatus
 
@@ -15,6 +16,9 @@ __all__ = [
 	"Address",
 	"Category",
 	"CategoryStatus",
+	"Cart",
+	"CartItem",
+	"CartStatus",
 	"Condition",
 	"Product",
 	"ProductImage",
@@ -25,4 +29,5 @@ __all__ = [
 	"User",
 	"UserRole",
 	"UserStatus",
+	"Wishlist",
 ]
