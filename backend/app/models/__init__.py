@@ -11,6 +11,7 @@ from app.models.catalog import (
 from app.models.negotiation import Chat, ChatMessage, Offer, OfferStatus
 from app.models.shopping import Cart, CartItem, CartStatus, Wishlist
 from app.models.store import Store, StoreStatus
+from app.models.transaction import Order, OrderItem, OrderStatus, Payment, PaymentStatus, Shipment, ShipmentStatus
 from app.models.user import User, UserRole, UserStatus
 
 __all__ = [
@@ -25,12 +26,19 @@ __all__ = [
 	"ChatMessage",
 	"Offer",
 	"OfferStatus",
+	"Order",
+	"OrderItem",
+	"OrderStatus",
+	"Payment",
+	"PaymentStatus",
 	"Product",
 	"ProductImage",
 	"ProductImageType",
 	"ProductStatus",
 	"Store",
 	"StoreStatus",
+	"Shipment",
+	"ShipmentStatus",
 	"User",
 	"UserRole",
 	"UserStatus",
