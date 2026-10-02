@@ -31,6 +31,7 @@ def create_app():
     from app.routes.checkout import checkout_bp
     from app.routes.offer import offer_bp
     from app.routes.order import order_bp
+    from app.routes.dashboard import dashboard_bp
     from app.routes.payment import payment_bp
     from app.routes.report import report_bp
     from app.routes.review import review_bp
@@ -46,6 +47,7 @@ def create_app():
     app.register_blueprint(checkout_bp, url_prefix="/api/checkout")
     app.register_blueprint(offer_bp, url_prefix="/api/offers")
     app.register_blueprint(order_bp, url_prefix="/api/orders")
+    app.register_blueprint(dashboard_bp, url_prefix="/api/dashboard")
     app.register_blueprint(payment_bp, url_prefix="/api/payments")
     app.register_blueprint(review_bp, url_prefix="/api/reviews")
     app.register_blueprint(report_bp, url_prefix="/api/reports")
