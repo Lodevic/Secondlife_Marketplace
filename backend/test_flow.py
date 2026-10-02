@@ -17,11 +17,11 @@ BUYER_PASSWORD = "password123"
 SELLER_EMAIL = "seller@tes.com"
 SELLER_PASSWORD = "password123"
 
-ADMIN_EMAIL = "adminwxqz@test.com"       # ganti sesuai akun admin tes di Neon
+ADMIN_EMAIL = "adminwxqz@test.com"
 ADMIN_PASSWORD = "Password123"
 
-PRODUCT_ID = 1                        # produk yang akan diuji
-ADDRESS_ID = 2                        # address milik buyer (buat manual dulu via SQL kalau belum ada)
+PRODUCT_ID = 2
+ADDRESS_ID = 2
 # ===================================================================
 
 
@@ -76,9 +76,16 @@ def main():
         print("Checkout gagal, hentikan.")
         return
 
-    order = body[0] if isinstance(body, list) else body
+    if isinstance(body, dict) and "orders" in body:
+        orders_list = body["orders"]
+    elif isinstance(body, list):
+        orders_list = body
+    else:
+        orders_list = [body]
+
+    order = orders_list[0]
     order_id = order["id"]
-    payment_id = order.get("payment", {}).get("id") or order.get("payment_id")
+    payment_id = order.get("payment", {}).get("id") if order.get("payment") else None
     print(f"    -> order_id={order_id}, payment_id={payment_id}")
 
     if admin_token and payment_id:
