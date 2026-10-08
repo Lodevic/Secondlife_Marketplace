@@ -3,7 +3,12 @@ import { useAuth } from '../context/AuthContext'
 
 export default function ForbiddenPage() {
   const { user } = useAuth()
-  const homePath = user?.role === 'admin' ? '/admin/dashboard' : '/seller/dashboard'
+  const homePath =
+    user?.role === 'admin'
+      ? '/admin/dashboard'
+      : user?.role === 'buyer'
+        ? '/buyer/dashboard'
+        : '/seller/dashboard'
 
   return (
     <main className="flex min-h-screen items-center justify-center px-4">

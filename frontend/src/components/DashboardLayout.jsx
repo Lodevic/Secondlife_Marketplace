@@ -2,6 +2,13 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
 const roleMenus = {
+  buyer: [
+    { label: 'Dashboard', path: '/buyer/dashboard', active: true },
+    { label: 'Wishlist', active: false },
+    { label: 'Keranjang', active: false },
+    { label: 'Pesanan', active: false },
+    { label: 'Chat', active: false },
+  ],
   seller: [
     { label: 'Dashboard', path: '/seller/dashboard', active: true },
     { label: 'Produk', active: false },
@@ -71,7 +78,11 @@ export default function DashboardLayout({ children }) {
       <div className="min-w-0 flex-1">
         <header className="flex min-h-16 items-center justify-between gap-4 border-b border-slate-200 bg-white px-5 py-3 md:px-8">
           <span className="text-sm text-slate-500">
-            {user.role === 'admin' ? 'Administrator' : 'Seller'}
+            {user.role === 'admin'
+              ? 'Administrator'
+              : user.role === 'seller'
+                ? 'Seller'
+                : 'Pembeli'}
           </span>
           <div className="flex items-center gap-3">
             <span className="max-w-40 truncate text-sm font-medium text-slate-700">
