@@ -4,10 +4,12 @@ import { useAuth } from '../context/AuthContext'
 const roleMenus = {
   buyer: [
     { label: 'Dashboard', path: '/buyer/dashboard', active: true },
-    { label: 'Wishlist', active: false },
-    { label: 'Keranjang', active: false },
-    { label: 'Pesanan', active: false },
-    { label: 'Chat', active: false },
+    { label: 'Belanja', path: '/buyer/products', active: true },
+    { label: 'Wishlist', path: '/buyer/wishlist', active: true },
+    { label: 'Keranjang', path: '/buyer/cart', active: true },
+    { label: 'Pesanan', path: '/buyer/orders', active: true },
+    { label: 'Chat', path: '/buyer/chats', active: true },
+    { label: 'Penawaran', active: false },
   ],
   seller: [
     { label: 'Dashboard', path: '/seller/dashboard', active: true },

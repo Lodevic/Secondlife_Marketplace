@@ -26,6 +26,7 @@ def create_app():
     from app import models  # noqa: F401
     from app.routes.auth import auth_bp
     from app.routes.admin import admin_bp
+    from app.routes.address import address_bp
     from app.routes.catalog import categories_bp, conditions_bp, products_bp
     from app.routes.cart import cart_bp
     from app.routes.chat import chat_bp
@@ -42,6 +43,7 @@ def create_app():
 
     app.register_blueprint(auth_bp, url_prefix="/api/auth")
     app.register_blueprint(admin_bp, url_prefix="/api/admin")
+    app.register_blueprint(address_bp, url_prefix="/api/addresses")
     app.register_blueprint(categories_bp, url_prefix="/api/categories")
     app.register_blueprint(conditions_bp, url_prefix="/api/conditions")
     app.register_blueprint(products_bp, url_prefix="/api/products")

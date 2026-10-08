@@ -3,6 +3,12 @@ import DashboardLayout from '../components/DashboardLayout'
 import ProtectedRoute from '../components/ProtectedRoute'
 import AdminDashboardPage from '../pages/AdminDashboardPage'
 import BuyerDashboardPage from '../pages/BuyerDashboardPage'
+import BuyerCartPage from '../pages/buyer/BuyerCartPage'
+import BuyerChatPage from '../pages/buyer/BuyerChatPage'
+import BuyerOrderDetailPage from '../pages/buyer/BuyerOrderDetailPage'
+import BuyerOrdersPage from '../pages/buyer/BuyerOrdersPage'
+import BuyerProductsPage from '../pages/buyer/BuyerProductsPage'
+import BuyerWishlistPage from '../pages/buyer/BuyerWishlistPage'
 import LoginPage from '../pages/LoginPage'
 import NotFoundPage from '../pages/NotFoundPage'
 import RegisterPage from '../pages/RegisterPage'
@@ -14,6 +20,13 @@ export default function AppRoutes() {
       <Route path="/" element={<Navigate to="/login" replace />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
+      <Route path="/buyer/products" element={<ProtectedRoute allowedRoles={['buyer']}><DashboardLayout><BuyerProductsPage /></DashboardLayout></ProtectedRoute>} />
+      <Route path="/buyer/wishlist" element={<ProtectedRoute allowedRoles={['buyer']}><DashboardLayout><BuyerWishlistPage /></DashboardLayout></ProtectedRoute>} />
+      <Route path="/buyer/cart" element={<ProtectedRoute allowedRoles={['buyer']}><DashboardLayout><BuyerCartPage /></DashboardLayout></ProtectedRoute>} />
+      <Route path="/buyer/orders" element={<ProtectedRoute allowedRoles={['buyer']}><DashboardLayout><BuyerOrdersPage /></DashboardLayout></ProtectedRoute>} />
+      <Route path="/buyer/orders/:id" element={<ProtectedRoute allowedRoles={['buyer']}><DashboardLayout><BuyerOrderDetailPage /></DashboardLayout></ProtectedRoute>} />
+      <Route path="/buyer/chats" element={<ProtectedRoute allowedRoles={['buyer']}><DashboardLayout><BuyerChatPage /></DashboardLayout></ProtectedRoute>} />
+      <Route path="/buyer/chats/:id" element={<ProtectedRoute allowedRoles={['buyer']}><DashboardLayout><BuyerChatPage /></DashboardLayout></ProtectedRoute>} />
       <Route
         path="/buyer/dashboard"
         element={
