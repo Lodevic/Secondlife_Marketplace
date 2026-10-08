@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { clearAuthTokens } from '../api/axios'
 
@@ -101,6 +101,13 @@ export default function LoginPage() {
             {submitting ? 'Memproses...' : 'Masuk'}
           </button>
         </form>
+
+        <p className="mt-6 text-center text-sm text-slate-600">
+          Belum punya akun?{' '}
+          <Link to="/register" className="font-semibold text-emerald-700 hover:text-emerald-800">
+            Daftar sekarang
+          </Link>
+        </p>
       </section>
     </main>
   )
