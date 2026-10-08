@@ -50,6 +50,12 @@ export function AuthProvider({ children }) {
     }
   }
 
+  const register = async (userData) => {
+    setAuthError('')
+    const response = await api.post('/api/auth/register', userData)
+    return response.data.user
+  }
+
   const logout = () => {
     clearAuthTokens()
     setUser(null)
@@ -57,7 +63,7 @@ export function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, loading, authError, login, logout }}>
+    <AuthContext.Provider value={{ user, loading, authError, login, register, logout }}>
       {children}
     </AuthContext.Provider>
   )

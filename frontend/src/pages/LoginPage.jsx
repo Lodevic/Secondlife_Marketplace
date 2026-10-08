@@ -24,13 +24,15 @@ export default function LoginPage() {
 
     try {
       const user = await login(email, password)
-      if (user.role === 'seller') {
+      if (user.role === 'buyer') {
+        navigate('/buyer/dashboard', { replace: true })
+      } else if (user.role === 'seller') {
         navigate('/seller/dashboard', { replace: true })
       } else if (user.role === 'admin') {
         navigate('/admin/dashboard', { replace: true })
       } else {
         logout()
-        setErrorMessage('Dashboard web hanya tersedia untuk seller dan admin.')
+        setErrorMessage('Peran pengguna tidak valid untuk dashboard web.')
       }
     } catch (error) {
       clearAuthTokens()
@@ -51,7 +53,7 @@ export default function LoginPage() {
           </p>
           <h1 className="text-2xl font-bold text-slate-900">Masuk ke dashboard</h1>
           <p className="mt-2 text-sm text-slate-500">
-            Dashboard ini khusus untuk seller dan admin.
+            Masuk untuk mengakses dashboard buyer, seller, atau admin.
           </p>
         </div>
 
