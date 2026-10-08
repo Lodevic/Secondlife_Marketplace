@@ -2,6 +2,7 @@ export default function DataTable({
   columns,
   rows,
   getRowKey = (row, index) => row.id ?? index,
+  onRowClick,
 }) {
   return (
     <div className="overflow-x-auto">
@@ -17,7 +18,20 @@ export default function DataTable({
         </thead>
         <tbody className="divide-y divide-slate-100">
           {rows.map((row, index) => (
-            <tr key={getRowKey(row, index)} className="text-slate-700">
+            <tr
+              key={getRowKey(row, index)}
+              className={`text-slate-700 ${onRowClick ? 'cursor-pointer hover:bg-slate-50 focus:bg-slate-50' : ''}`}
+              tabIndex={onRowClick ? 0 : undefined}
+              onClick={onRowClick ? (event) => {
+                if (!event.target.closest('a, button')) onRowClick(row)
+              } : undefined}
+              onKeyDown={onRowClick ? (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault()
+                  onRowClick(row)
+                }
+              } : undefined}
+            >
               {columns.map((column) => (
                 <td key={column.key} className="px-3 py-3 align-top">
                   {column.render ? column.render(row) : row[column.key]}

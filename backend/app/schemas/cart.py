@@ -15,6 +15,7 @@ class CartItemQuantitySchema(Schema):
 class CartProductSchema(Schema):
     id = fields.Integer(dump_only=True)
     name = fields.String(dump_only=True)
+    price = fields.Decimal(as_string=True, dump_only=True)
     stock = fields.Integer(dump_only=True)
     status = fields.Method("get_status", dump_only=True)
 
@@ -28,11 +29,16 @@ class CartItemSchema(Schema):
     quantity = fields.Integer(dump_only=True)
     price_snapshot = fields.Decimal(as_string=True, dump_only=True)
     subtotal = fields.Method("get_subtotal", dump_only=True)
+    current_subtotal = fields.Method("get_current_subtotal", dump_only=True)
     product = fields.Nested(CartProductSchema, dump_only=True)
 
     @staticmethod
     def get_subtotal(item):
         return str(item.price_snapshot * item.quantity)
+
+    @staticmethod
+    def get_current_subtotal(item):
+        return str(item.product.price * item.quantity)
 
 
 class CartSchema(Schema):
@@ -40,6 +46,7 @@ class CartSchema(Schema):
     status = fields.Method("get_status", dump_only=True)
     items = fields.Nested(CartItemSchema, many=True, dump_only=True)
     total = fields.Method("get_total", dump_only=True)
+    current_total = fields.Method("get_current_total", dump_only=True)
 
     @staticmethod
     def get_status(cart):
@@ -48,3 +55,7 @@ class CartSchema(Schema):
     @staticmethod
     def get_total(cart):
         return str(sum((item.price_snapshot * item.quantity for item in cart.items), Decimal("0.00")))
+
+    @staticmethod
+    def get_current_total(cart):
+        return str(sum((item.product.price * item.quantity for item in cart.items), Decimal("0.00")))

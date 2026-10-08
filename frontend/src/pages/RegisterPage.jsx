@@ -93,7 +93,7 @@ export default function RegisterPage() {
       if (loggedInUser.role === 'buyer') {
         navigate('/buyer/dashboard', { replace: true })
       } else if (loggedInUser.role === 'seller') {
-        navigate('/seller/create-store', { replace: true })
+        navigate('/seller/dashboard', { replace: true })
       } else {
         navigate('/login', { replace: true })
       }
