@@ -13,6 +13,11 @@ import LoginPage from '../pages/LoginPage'
 import NotFoundPage from '../pages/NotFoundPage'
 import RegisterPage from '../pages/RegisterPage'
 import SellerDashboardPage from '../pages/SellerDashboardPage'
+import SellerOrderDetailPage from '../pages/seller/SellerOrderDetailPage'
+import SellerOrdersPage from '../pages/seller/SellerOrdersPage'
+import SellerProductFormPage from '../pages/seller/SellerProductFormPage'
+import SellerProductsPage from '../pages/seller/SellerProductsPage'
+import SellerStorePage from '../pages/seller/SellerStorePage'
 
 export default function AppRoutes() {
   return (
@@ -43,6 +48,66 @@ export default function AppRoutes() {
           <ProtectedRoute allowedRoles={['seller']}>
             <DashboardLayout>
               <SellerDashboardPage />
+            </DashboardLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/seller/products"
+        element={
+          <ProtectedRoute allowedRoles={['seller']}>
+            <DashboardLayout>
+              <SellerProductsPage />
+            </DashboardLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/seller/products/new"
+        element={
+          <ProtectedRoute allowedRoles={['seller']}>
+            <DashboardLayout>
+              <SellerProductFormPage />
+            </DashboardLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/seller/products/:id/edit"
+        element={
+          <ProtectedRoute allowedRoles={['seller']}>
+            <DashboardLayout>
+              <SellerProductFormPage />
+            </DashboardLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/seller/orders"
+        element={
+          <ProtectedRoute allowedRoles={['seller']}>
+            <DashboardLayout>
+              <SellerOrdersPage />
+            </DashboardLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/seller/orders/:id"
+        element={
+          <ProtectedRoute allowedRoles={['seller']}>
+            <DashboardLayout>
+              <SellerOrderDetailPage />
+            </DashboardLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/seller/store"
+        element={
+          <ProtectedRoute allowedRoles={['seller']}>
+            <DashboardLayout>
+              <SellerStorePage />
             </DashboardLayout>
           </ProtectedRoute>
         }
