@@ -13,9 +13,9 @@ const roleMenus = {
   ],
   seller: [
     { label: 'Dashboard', path: '/seller/dashboard', active: true },
-    { label: 'Produk', active: false },
-    { label: 'Pesanan', active: false },
-    { label: 'Toko', active: false },
+    { label: 'Produk', path: '/seller/products', active: true },
+    { label: 'Pesanan', path: '/seller/orders', active: true },
+    { label: 'Toko', path: '/seller/store', active: true },
   ],
   admin: [
     { label: 'Dashboard', path: '/admin/dashboard', active: true },

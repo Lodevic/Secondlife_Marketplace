@@ -3,12 +3,29 @@ from flask_jwt_extended import get_jwt_identity, jwt_required
 from sqlalchemy.exc import IntegrityError
 
 from app.extensions import db
-from app.models import Store, StoreStatus, User, UserRole
+from app.models import Store, StoreStatus, User, UserRole, UserStatus
 from app.schemas.store import StoreCreateSchema, StoreSchema
 
 stores_bp = Blueprint("stores", __name__)
 create_schema = StoreCreateSchema()
 store_schema = StoreSchema()
+
+
+@stores_bp.get("/me")
+@jwt_required()
+def get_my_store():
+    user = db.session.get(User, int(get_jwt_identity()))
+    if user is None:
+        return jsonify(error="User tidak ditemukan"), 404
+    if user.status != UserStatus.active:
+        return jsonify(error="Akun tidak aktif"), 403
+    if user.role != UserRole.seller:
+        return jsonify(error="Hanya seller yang dapat melihat toko"), 403
+
+    store = db.session.scalar(db.select(Store).where(Store.seller_id == user.id))
+    if store is None:
+        return jsonify(error="Toko seller tidak ditemukan"), 404
+    return jsonify(store=store_schema.dump(store))
 
 
 @stores_bp.post("")

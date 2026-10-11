@@ -1,15 +1,21 @@
-from marshmallow import Schema, fields, validate
+from marshmallow import Schema, fields, validate, pre_load
 
 
 class AddressCreateSchema(Schema):
-    label = fields.String(required=True, validate=validate.Length(min=1, max=50), trim=True)
-    recipient_name = fields.String(required=True, validate=validate.Length(min=1, max=120), trim=True)
-    phone = fields.String(required=True, validate=validate.Length(min=1, max=30), trim=True)
-    address = fields.String(required=True, validate=validate.Length(min=1), trim=True)
-    city = fields.String(required=True, validate=validate.Length(min=1, max=100), trim=True)
-    province = fields.String(required=True, validate=validate.Length(min=1, max=100), trim=True)
-    postal_code = fields.String(required=True, validate=validate.Length(min=1, max=20), trim=True)
+    label = fields.String(required=True, validate=validate.Length(min=1, max=50))
+    recipient_name = fields.String(required=True, validate=validate.Length(min=1, max=120))
+    phone = fields.String(required=True, validate=validate.Length(min=1, max=30))
+    address = fields.String(required=True, validate=validate.Length(min=1))
+    city = fields.String(required=True, validate=validate.Length(min=1, max=100))
+    province = fields.String(required=True, validate=validate.Length(min=1, max=100))
+    postal_code = fields.String(required=True, validate=validate.Length(min=1, max=20))
     is_default = fields.Boolean(load_default=False)
+
+    @pre_load
+    def strip_strings(self, data, **kwargs):
+        if not isinstance(data, dict):
+            return data
+        return {k: v.strip() if isinstance(v, str) else v for k, v in data.items()}
 
 
 class AddressSchema(Schema):
