@@ -38,7 +38,7 @@ export default function DashboardLayout({ children }) {
 
   return (
     <div className="min-h-screen md:flex">
-      <aside className="w-full border-b border-slate-200 bg-white p-5 md:min-h-screen md:w-64 md:border-b-0 md:border-r">
+      <aside className="print:hidden w-full border-b border-slate-200 bg-white p-5 md:min-h-screen md:w-64 md:border-b-0 md:border-r">
         <div className="mb-5 text-lg font-bold text-emerald-700">
           SecondLife
           <span className="block text-xs font-medium text-slate-500">
@@ -78,7 +78,7 @@ export default function DashboardLayout({ children }) {
       </aside>
 
       <div className="min-w-0 flex-1">
-        <header className="flex min-h-16 items-center justify-between gap-4 border-b border-slate-200 bg-white px-5 py-3 md:px-8">
+        <header className="print:hidden flex min-h-16 items-center justify-between gap-4 border-b border-slate-200 bg-white px-5 py-3 md:px-8">
           <span className="text-sm text-slate-500">
             {user.role === 'admin'
               ? 'Administrator'

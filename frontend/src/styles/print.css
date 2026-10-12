@@ -1,0 +1,68 @@
+@media print {
+  @page {
+    margin: 16mm;
+  }
+
+  html,
+  body {
+    min-width: 0 !important;
+    background: #fff !important;
+    color: #111827 !important;
+  }
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  .print-document,
+  .print-document * {
+    visibility: visible !important;
+  }
+
+  .print-document {
+    position: absolute !important;
+    inset: 0 auto auto 0 !important;
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: #fff !important;
+    color: #111827 !important;
+    box-shadow: none !important;
+    font: 10pt/1.45 Arial, Helvetica, sans-serif !important;
+    overflow-wrap: anywhere;
+  }
+
+  .print-document h1,
+  .print-document h2 {
+    color: #111827 !important;
+    break-after: avoid;
+  }
+
+  .print-document table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  .print-document th,
+  .print-document td {
+    border: 1px solid #9ca3af !important;
+    padding: 6px !important;
+    overflow-wrap: anywhere;
+  }
+
+  .print-document th {
+    background: #f3f4f6 !important;
+  }
+
+  .print-document tr,
+  .print-document dl > div {
+    break-inside: avoid;
+  }
+
+  .print-hidden {
+    display: none !important;
+  }
+}
