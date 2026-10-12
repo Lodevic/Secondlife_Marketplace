@@ -2,6 +2,12 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import DashboardLayout from '../components/DashboardLayout'
 import ProtectedRoute from '../components/ProtectedRoute'
 import AdminDashboardPage from '../pages/AdminDashboardPage'
+import AdminOrderDetailPage from '../pages/admin/AdminOrderDetailPage'
+import AdminOrdersPage from '../pages/admin/AdminOrdersPage'
+import AdminProductsPage from '../pages/admin/AdminProductsPage'
+import AdminReportDetailPage from '../pages/admin/AdminReportDetailPage'
+import AdminReportsPage from '../pages/admin/AdminReportsPage'
+import AdminUsersPage from '../pages/admin/AdminUsersPage'
 import BuyerDashboardPage from '../pages/BuyerDashboardPage'
 import BuyerCartPage from '../pages/buyer/BuyerCartPage'
 import BuyerChatPage from '../pages/buyer/BuyerChatPage'
@@ -118,6 +124,66 @@ export default function AppRoutes() {
           <ProtectedRoute allowedRoles={['admin']}>
             <DashboardLayout>
               <AdminDashboardPage />
+            </DashboardLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/users"
+        element={
+          <ProtectedRoute allowedRoles={['admin']}>
+            <DashboardLayout>
+              <AdminUsersPage />
+            </DashboardLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/products"
+        element={
+          <ProtectedRoute allowedRoles={['admin']}>
+            <DashboardLayout>
+              <AdminProductsPage />
+            </DashboardLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/orders"
+        element={
+          <ProtectedRoute allowedRoles={['admin']}>
+            <DashboardLayout>
+              <AdminOrdersPage />
+            </DashboardLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/orders/:id"
+        element={
+          <ProtectedRoute allowedRoles={['admin']}>
+            <DashboardLayout>
+              <AdminOrderDetailPage />
+            </DashboardLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/reports"
+        element={
+          <ProtectedRoute allowedRoles={['admin']}>
+            <DashboardLayout>
+              <AdminReportsPage />
+            </DashboardLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/reports/:id"
+        element={
+          <ProtectedRoute allowedRoles={['admin']}>
+            <DashboardLayout>
+              <AdminReportDetailPage />
             </DashboardLayout>
           </ProtectedRoute>
         }
