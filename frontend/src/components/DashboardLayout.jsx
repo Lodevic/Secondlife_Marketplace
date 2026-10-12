@@ -19,10 +19,10 @@ const roleMenus = {
   ],
   admin: [
     { label: 'Dashboard', path: '/admin/dashboard', active: true },
-    { label: 'Pengguna', active: false },
-    { label: 'Produk', active: false },
-    { label: 'Pesanan', active: false },
-    { label: 'Laporan', active: false },
+    { label: 'Pengguna', path: '/admin/users', active: true },
+    { label: 'Produk', path: '/admin/products', active: true },
+    { label: 'Pesanan', path: '/admin/orders', active: true },
+    { label: 'Laporan', path: '/admin/reports', active: true },
   ],
 }
 

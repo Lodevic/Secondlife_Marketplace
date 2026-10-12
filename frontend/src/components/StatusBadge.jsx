@@ -4,11 +4,15 @@ const statusStyles = {
   active: 'bg-emerald-100 text-emerald-800',
   paid: 'bg-emerald-100 text-emerald-800',
   completed: 'bg-emerald-100 text-emerald-800',
+  resolved: 'bg-emerald-100 text-emerald-800',
   delivered: 'bg-emerald-100 text-emerald-800',
   processing: 'bg-blue-100 text-blue-800',
   shipped: 'bg-blue-100 text-blue-800',
+  investigating: 'bg-blue-100 text-blue-800',
   pending: 'bg-amber-100 text-amber-800',
   pending_payment: 'bg-amber-100 text-amber-800',
+  suspended: 'bg-amber-100 text-amber-800',
+  blocked: 'bg-red-100 text-red-800',
   draft: 'bg-slate-100 text-slate-700',
   archived: 'bg-slate-100 text-slate-700',
   cancelled: 'bg-slate-100 text-slate-700',
@@ -25,6 +29,14 @@ const shipmentStatusLabels = {
   failed: 'Gagal',
 }
 
+const statusLabels = {
+  suspended: 'Ditangguhkan',
+  blocked: 'Diblokir',
+  investigating: 'Sedang ditinjau',
+  resolved: 'Selesai ditinjau',
+  rejected: 'Ditolak',
+}
+
 export default function StatusBadge({ status }) {
   return (
     <span
@@ -32,7 +44,7 @@ export default function StatusBadge({ status }) {
         statusStyles[status] || 'bg-slate-100 text-slate-700'
       }`}
     >
-      {shipmentStatusLabels[status] || labelStatus(status)}
+      {shipmentStatusLabels[status] || statusLabels[status] || labelStatus(status)}
     </span>
   )
 }
